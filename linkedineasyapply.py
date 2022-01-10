@@ -620,7 +620,7 @@ class LinkedinEasyApply:
                 text = el.text.lower()
                 if 'email address' in text:
                     continue
-                elif 'phone number' in text:
+                elif 'phone' in text:
                     try:
                         country_code_picker = el.find_element_by_class_name('fb-dropdown__select')
                         self.select_dropdown(country_code_picker, self.personal_info['Phone Country Code'])
@@ -631,6 +631,7 @@ class LinkedinEasyApply:
                         self.enter_text(phone_number_field, self.personal_info['Mobile Phone Number'])
                     except:
                         print("Could not input phone number.")
+
 
     def fill_up(self):
         try:
@@ -729,4 +730,3 @@ class LinkedinEasyApply:
                          "&keywords=" + position + location + "&start=" + str(job_page*25))
 
         self.avoid_lock()
-
