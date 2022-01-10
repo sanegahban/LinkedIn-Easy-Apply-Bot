@@ -1,6 +1,8 @@
 import yaml, pdb
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
 from linkedineasyapply import LinkedinEasyApply
 from validate_email import validate_email
@@ -13,7 +15,8 @@ def init_browser():
     for option in options:
         browser_options.add_argument(option)
 
-    driver = webdriver.Chrome(ChromeDriverManager().install(), chrome_options=browser_options)
+    s = Service(ChromeDriverManager().install())
+    driver = webdriver.Chrome(service=s, options=browser_options)
 
     driver.set_window_position(0, 0)
     driver.maximize_window()
@@ -126,7 +129,3 @@ if __name__ == '__main__':
     bot.login()
     bot.security_check()
     bot.start_applying()
-
-
-
-
